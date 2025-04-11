@@ -16,32 +16,29 @@ ACC 旨在解决多系统集成的复杂性问题，让用户能够通过简单�
 Auto-Central-Control/  
 ├── ACC/                        # 核心代码目录  
 │   ├── agent/                  # LLM 交互代理模块  
-│   │   ├── agent.py            # 代理核心实现  
-│   │   └── prompt.py           # 代理提示词管理  
+│   │   └── __init__.py         # 代理初始化与接口导出
 │   ├── config.py               # 配置加载与管理  
 │   ├── core/                   # 核心功能  
-│   │   ├── discovery.py        # 工具发现机制  
-│   │   ├── registry.py         # 工具注册中心  
-│   │   └── executor.py         # 工具执行引擎  
+│   │   ├── runner.py           # 主运行循环模块
+│   │   └── tool_discovery.py   # 工具发现机制
 │   ├── function/               # 基础功能函数  
-│   │   ├── file_utils.py       # 文件操作工具  
-│   │   └── string_utils.py     # 字符串处理工具  
+│   │   ├── use_tool.py         # 工具调用模块
+│   │   ├── search_tool_info.py # 工具信息查询
+│   │   ├── print_for_user.py   # 用户信息输出
+│   │   └── get_user_input.py   # 用户输入处理
 │   ├── interaction/            # 用户交互模块  
-│   │   ├── cli.py              # 命令行交互界面  
-│   │   └── web.py              # Web交互界面  
+│   │   └── cli.py              # 命令行交互界面  
 │   ├── llm.py                  # 大语言模型接口  
 │   ├── local_tools/            # 本地工具集合  
 │   ├── mcp.py                  # MCP 服务器管理核心  
 │   ├── memory/                 # 内存与状态管理  
-│   │   ├── context.py          # 上下文管理  
-│   │   └── history.py          # 历史记录管理  
 │   ├── prompt/                 # 提示词模板库  
+│   │   ├── __init__.py         # 提示词模块导出
+│   │   └── ACC.py              # 系统提示词定义
 │   ├── system/                 # 系统初始化模块  
-│   │   ├── bootstrap.py        # 系统引导程序  
-│   │   └── health.py           # 系统健康检查  
+│   │   └── initializer.py      # 系统初始化器
 │   └── workflow.py             # 工作流引擎  
 ├── config/                     # 配置文件  
-│   ├── config.toml             # 主配置（含示例模板）  
 │   ├── config.example.toml     # 配置模板  
 │   └── mcp_server.json         # MCP 服务器配置  
 ├── logs/                       # 日志存储  
@@ -50,6 +47,9 @@ Auto-Central-Control/
 │   ├── excel/                  # Excel 处理服务器  
 │   ├── excel-mcp-server-main/  # Excel MCP 服务器主程序  
 │   └── web-browser/            # Web 浏览器服务器  
+│       └── src/                # 浏览器服务器源码
+│           └── mcp_web_browser/
+│               └── server.py   # Web浏览器服务器实现
 ├── requirements.txt            # 依赖清单  
 ├── start.py                    # 一键启动脚本  
 └── workspace/                  # 运行时工作目录  
