@@ -1,0 +1,57 @@
+{
+    "mcpServers": {
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "--registry=https://mirrors.tuna.tsinghua.edu.cn/npm/",
+                "@modelcontextprotocol/server-filesystem",
+                "C:\\Users\\Gavin",
+                "C:\\Users\\Gavin\\Desktop"
+            ]
+        },
+        "mathall": {
+            "url": "http://mcp.iqust.top/sse",
+            "transport": "sse"
+        },
+        "windows-cli": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "--registry=https://mirrors.tuna.tsinghua.edu.cn/npm/",
+                "@simonb97/server-win-cli"
+            ]
+        },
+        "excel": {
+            "stdio_command": "uv",
+            "stdio_args": [
+                "run",
+                "excel-mcp-server"
+            ],
+            "port": 8000,
+            "transport": "sse"
+        },
+        "mcp-browser-use": {
+            "command": "uvx",
+            "args": [
+                "mcp-browser-use"
+            ]
+        },
+        "memory": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "--registry=https://mirrors.tuna.tsinghua.edu.cn/npm/",
+                "@modelcontextprotocol/server-memory"
+            ]
+        },
+        "sequential-thinking": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "--registry=https://mirrors.tuna.tsinghua.edu.cn/npm/",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ]
+        }
+    }
+}

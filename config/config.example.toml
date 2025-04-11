@@ -1,0 +1,22 @@
+# 普通模型配置
+[llm]
+model = "claude-3-5-sonnet"
+base_url = "https://api.openai.com/v1"
+api_key = "sk-..."
+max_tokens = 640000
+temperature = 0.3
+debug = false
+
+# 视觉模型配置
+[llm.vision]
+model = "claude-3-5-sonnet"
+base_url = "https://api.openai.com/v1"
+api_key = "sk-..."
+
+[vision.enable]
+enable_vision = true  # 是否启用视觉功能
+
+# 默认工作空间路径设置
+[workspace]
+default_path = "workspace"
+

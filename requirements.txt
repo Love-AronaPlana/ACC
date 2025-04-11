@@ -1,0 +1,9 @@
+python-dotenv
+requests
+toml
+mcp
+mcp-proxy
+playwright
+uv
+numpy
+fastmcp

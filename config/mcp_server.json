@@ -1,0 +1,43 @@
+{
+    "mcpServers": {
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "--registry=https://registry.npmmirror.com/",
+                "@modelcontextprotocol/server-filesystem",
+                "C:\\Users\\Gavin",
+                "C:\\Users\\Gavin\\Desktop"
+            ]
+        },
+        "memory": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-memory"
+            ]
+        },
+        "sequential-thinking": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ]
+        },
+        "playwright": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "--registry=https://registry.npmmirror.com/",
+                "@playwright/mcp@latest"
+            ]
+        },
+        "calculator": {
+            "command": "python",
+            "args": [
+                "calculator.py"
+            ],
+            "local": "True"
+        }
+    }
+}
