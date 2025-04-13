@@ -18,12 +18,28 @@ class ToolDiscovery:
         self.servers = mcp_servers
         self.tool_registry = {}
 
-    async def discover_tools(self):
-        """发现并注册所有可用工具"""
+    async def discover_tools(self, servers=None):
+        """发现并注册所有可用工具
+        
+        Args:
+            servers: 可选的服务器字典，如果提供则使用此字典而非self.servers
+        """
         logger.info("开始发现MCP服务器工具...")
+        
+        # 使用提供的服务器列表或默认的self.servers
+        target_servers = servers if servers is not None else self.servers
 
-        for server_id, server_info in self.servers.items():
-            session: ClientSession = server_info["session"]
+        for server_id, server_info in target_servers.items():
+            # 跳过标记为not_tool的服务器
+            if server_info.get("not_tool", False):
+                logger.debug(f"跳过非工具服务器: {server_id}")
+                continue
+                
+            session = server_info.get("session")
+            if not session:
+                logger.warning(f"服务器 {server_id} 没有有效会话，跳过工具发现")
+                continue
+                
             try:
                 response = await session.list_tools()
                 self._process_tools(server_id, response.tools)

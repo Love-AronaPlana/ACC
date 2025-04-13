@@ -33,13 +33,31 @@ class ACCAgent:
         self.tool_registry = {}
         logger.info("ACC代理初始化完成")
 
-    def set_tool_registry(self, tool_registry: Dict[str, Dict[str, Any]]):
-        """设置工具注册表
-
-        Args:
-            tool_registry: 工具注册表
-        """
+    async def set_tool_registry(self, tool_registry: Dict[str, Any] = None):
+        """设置工具注册表"""
+        if tool_registry is None:
+            tool_registry = {}
+        
+        # 如果工具注册表为空，尝试从MCP API获取
+        if not tool_registry:
+            try:
+                from ..function.use_tool import get_mcp_api_client
+                
+                mcp_client = get_mcp_api_client()
+                
+                # 检查MCP服务器状态
+                status = await mcp_client.check_status()
+                if status.get('success', False):
+                    # 从MCP API获取工具注册表
+                    api_tool_registry = await mcp_client.get_tool_registry()
+                    if api_tool_registry:
+                        tool_registry = api_tool_registry
+                        logger.info(f"从MCP API获取工具注册表成功，工具数量: {len(tool_registry)}")
+            except Exception as e:
+                logger.warning(f"从MCP API获取工具注册表失败: {str(e)}")
+        
         self.tool_registry = tool_registry
+        logger.debug(f"工具注册表已设置，工具数量: {len(self.tool_registry)}")
         logger.info(f"已更新工具注册表，共 {len(self.tool_registry)} 个工具")
 
     def get_formatted_tools_list(self) -> str:
